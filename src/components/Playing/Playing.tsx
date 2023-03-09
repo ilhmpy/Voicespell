@@ -1,55 +1,73 @@
 import { FlexBlock } from "../../UI/FlexBlock";
-import { Input } from "./Playing.styles";
-import { Button } from "../../UI/Button";
+import { Input, WordIndicator, WordIndicatorBox, WordSpanResult } from "./Playing.styles";
+import { Button, Block } from "../../UI";
 import { ReactComponent as SoundSVG } from "../../static/sound.svg";
+import { ReactComponent as ReplaceSVG } from "../../static/replace.svg";
 import { useEffect, useState } from "react";
-
-/* 
-    1 етап
-
-    1 створюємо список слів
-    2 дізнаємось рандомне слово 
-    3 змушуємо браузер розмовляти
-    4 зберігаємо слово яке загадали
-    5 додаємо максимум букв в слові у інпут
-
-    2 етап 
-
-    1 обробляємо введенні данні (перетворюємо отримане слово на массив, теж саме робимо з загаданим словом) перевіряємо чи сходятся усі букви
-    2 якщо ні показуємо результат та показуємо конкретні букви які не правильні у цьому слові
-*/
 
 export const Playing = () => {
     const [hiddenWord, setHiddenWord] = useState<number>(0);
     const [words, setWords] = useState<string[]>([
-        'собака', 'кіт', 'стілець', 'стіл', 'сукня',
-        'мама', 'мавпа', 'кінь', 'олень', 'русня',
-        'памперс', 'лайно', 'сварог', 'триглав', 'фрея',
-        'даждьбог', 'перун', 'одін', 'рід', 'скарби'
+        'Tätigkeit', 'Fahrkarte', 'Verkehr', 'auschreiben', 'abschreiben',
+        'einfühlen', 'Entwicklung', 'Ergebniss', 'Hund', 'Hausaufgaben',
+        'Lehrer', 'Heft', 'Telefon', 'Katze', 'Oberschenkelknochen',
+        'ausmessen', 'Bewerbung', 'Verantwortung', 'Satz', 'Wort'
     ]);
+    const [ hiddenWordValue, setHiddenWordValue ] = useState<string>('');
+
+    const randomWord = () => Math.floor(Math.random() * words.length);
 
     useEffect(() => {
-        const hiddenWordIdx = Math.floor(Math.random() * words.length);
-        speechSynthesis.getVoices();
-        setHiddenWord(hiddenWordIdx);
+        setHiddenWord(randomWord());
     }, []);
 
-    const handleButton = (e: any) => {
-        const voice = speechSynthesis.getVoices()[1];
-        console.log(voice)
-        let speech = new SpeechSynthesisUtterance('собака');
-        speech.lang = 'ru-RU'
-        speech.voice = voice;
+    const handleSoundButton = () => {
+        let speech = new SpeechSynthesisUtterance(words[hiddenWord]);
+        speech.lang = 'de-DE'
+        speech.rate = 0.5;
 
         speechSynthesis.speak(speech);
     };
 
+    const handleReplaceButton = () => {
+        setHiddenWord(randomWord());
+        setHiddenWordValue('');
+    }
+
+    const handleHiddenWordInput = (e: any) => {
+        const value = e.target.value;
+        setHiddenWordValue(value);
+    };
+
     return (
-        <FlexBlock justifyContent="left" wrap>
-            <Input placeholder="Введіть загадане слово" />
-            <Button small onClick={handleButton}>
-                <SoundSVG />
-            </Button>
-        </FlexBlock>
+        <div>
+            <FlexBlock justifyContent="left" wrap>
+                <Input 
+                    placeholder="Введіть загадане слово" 
+                    maxLength={typeof hiddenWord == 'number' ? words[hiddenWord].length : 0}
+                    onChange={handleHiddenWordInput} 
+                    value={hiddenWordValue}
+                    right={hiddenWordValue == words[hiddenWord]}
+                />
+                <Button small onClick={handleSoundButton}>
+                    <SoundSVG />
+                </Button>
+                <Button small onClick={handleReplaceButton}>
+                    <ReplaceSVG />
+                </Button>
+            </FlexBlock>
+            {hiddenWordValue != words[hiddenWord] && hiddenWordValue != '' && (
+                <Block>
+                    <WordIndicatorBox>
+                        {hiddenWordValue.split('').map((b, idx) => (
+                            <WordIndicator key={idx} right={b == words[hiddenWord][idx]}>{b}</WordIndicator>                            
+                        ))}
+                    </WordIndicatorBox>
+                </Block>
+            )}
+            {hiddenWordValue == words[hiddenWord] && (
+                <WordSpanResult>Ти впорався!</WordSpanResult>
+            )}
+        </div>
     )
 }

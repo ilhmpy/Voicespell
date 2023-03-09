@@ -14,7 +14,7 @@ export const StartPlay: FC<StartPlayInterface> = ({ setPlay }) => {
 
     return (
         <div>
-            <Title>Гра на перевірку знань граматики</Title>
+            <Title>Гра на перевірку правописання німецьких слів</Title>
             <FlexBlock>
                 <Button onClick={handleClick}>ГРАТИ</Button>
             </FlexBlock>

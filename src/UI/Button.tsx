@@ -12,6 +12,7 @@ export const Button = styled.button<ButtonInterface>`
      background: #882D89;
      color: #fff;
      transition: 0.3s;
+     margin-right: 5px;
 
      &: hover {
         background: rgb(94, 1, 94);
