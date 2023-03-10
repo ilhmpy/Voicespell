@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import { PlayingInput, PlayingAlarm } from "./components";
 import { WordsInterface } from "../../types";
 
-/* покращити систему рандому (вилучати слова які вже були, а данні про них брати з дефолтних)*/
-
 export const Playing = () => {
     const [hiddenWord, setHiddenWord] = useState<number>(0);
     const [defaultWords, setDefaultWords] = useState<WordsInterface[]>([
@@ -40,17 +38,8 @@ export const Playing = () => {
     };
 
     useEffect(() => {
-        const rWord = randomWord(defaultWords)
-        /* const filterWords = defaultWords.filter((word, idx) => {
-            console.log(idx, rWord, word, idx != rWord)
-            if (idx != rWord) {
-                return word;
-            }
-        }) 
-        setWords(filterWords); */
-
+        const rWord = randomWord(defaultWords);
         setWords(defaultWords)
-        console.log(defaultWords, rWord)
         setHiddenWord(rWord);
     }, []);
 
@@ -67,7 +56,14 @@ export const Playing = () => {
     const handleReplaceButton = () => {
         if (words) {
             if (hiddenWordValue == words[hiddenWord].word) {
-                setHiddenWord(randomWord(words));
+                let filterWords; 
+                if (words.length > 1) {
+                    filterWords = words.filter((b, idx) => idx != hiddenWord);
+                } else {
+                    filterWords = defaultWords;
+                }
+                setHiddenWord(randomWord(filterWords));
+                setWords(filterWords);
                 setHiddenWordValue('');
             }
         }
