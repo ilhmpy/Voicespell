@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface ButtonInterface {
    small?: boolean;
+   isWork?: boolean;
 }
 
 export const Button = styled.button<ButtonInterface>`
@@ -26,4 +27,5 @@ export const Button = styled.button<ButtonInterface>`
      }
 
      ${({ small }) => small && `width: 45px; height: 40px;`}
+     ${({ isWork }) => isWork != null && isWork == false && `background: rgb(94, 1, 94);`}
 `;
