@@ -39,7 +39,7 @@ export const PlayingInput: FC<PlayingInputInteface> = ({
 export const Input = styled.input<InputInterface>`
     display: block;
     padding: 15px;
-    width: 215px;
+    width: 180px;
     height: 40px;
     border: 2px solid rgb(136, 45, 137);
     border-radius: 10px;

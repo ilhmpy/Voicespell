@@ -1,5 +1,5 @@
 import { FlexBlock } from "../../UI/FlexBlock";
-import { Button, Block } from "../../UI";
+import { Button, List } from "../../UI";
 import { ReactComponent as SoundSVG } from "../../static/sound.svg";
 import { ReactComponent as ReplaceSVG } from "../../static/replace.svg";
 import { useEffect, useState } from "react";
@@ -9,29 +9,31 @@ import { WordsInterface } from "../../types";
 export const Playing = () => {
     const [hiddenWord, setHiddenWord] = useState<number>(0);
     const [defaultWords, setDefaultWords] = useState<WordsInterface[]>([
-        { word: 'Tätigkeit', articel: 'die', isVerb: false }, 
-        { word: 'Fahrkarte', articel: 'die', isVerb: false },
-        { word: 'Verkehr', articel: 'der', isVerb: false }, 
+        { word: 'Tätigkeit', artikel: 'die', isVerb: false }, 
+        { word: 'Fahrkarte', artikel: 'die', isVerb: false },
+        { word: 'Verkehr', artikel: 'der', isVerb: false }, 
         { word: 'ausschreiben', isVerb: true },
         { word: 'abschreiben', isVerb: true },
         { word: 'einfühlen', isVerb: true },
-        { word: 'Entwicklung', articel: 'die', isVerb: false }, 
-        { word: 'Ergebniss', articel: 'das', isVerb: false }, 
-        { word: 'Hund', articel: 'der', isVerb: false }, 
-        { word: 'Hausaufgabe', articel: 'die', isVerb: false },
-        { word: 'Lehrer', articel: 'der', isVerb: false },
-        { word: 'Heft', articel: 'das', isVerb: false },
-        { word: 'Telefon', articel: 'das', isVerb: false },
-        { word: 'Katze', articel: 'die', isVerb: false },
-        { word: 'Oberschenkelknochen', articel: 'der', isVerb: false },
+        { word: 'Entwicklung', artikel: 'die', isVerb: false }, 
+        { word: 'Ergebniss', artikel: 'das', isVerb: false }, 
+        { word: 'Hund', artikel: 'der', isVerb: false }, 
+        { word: 'Hausaufgabe', artikel: 'die', isVerb: false },
+        { word: 'Lehrer', artikel: 'der', isVerb: false },
+        { word: 'Heft', artikel: 'das', isVerb: false },
+        { word: 'Telefon', artikel: 'das', isVerb: false },
+        { word: 'Katze', artikel: 'die', isVerb: false },
+        { word: 'Oberschenkelknochen', artikel: 'der', isVerb: false },
         { word: 'ausmessen', isVerb: true },
-        { word: 'Bewerbung', articel: 'die', isVerb: false },
-        { word: 'Verantwortung', articel: 'die', isVerb: false },
-        { word: 'Satz', articel: 'der', isVerb: false },
-        { word: 'Wort', articel: 'das', isVerb: false }
+        { word: 'Bewerbung', artikel: 'die', isVerb: false },
+        { word: 'Verantwortung', artikel: 'die', isVerb: false },
+        { word: 'Satz', artikel: 'der', isVerb: false },
+        { word: 'Wort', artikel: 'das', isVerb: false }
     ])
     const [words, setWords] = useState<WordsInterface[] | null>(null);
     const [hiddenWordValue, setHiddenWordValue] = useState<string>('');
+    const [artikels, setArtikels] = useState<string[]>(['Der', 'Die', 'Das']);
+    const [artikel, setArtikel] = useState<string>(artikels[0]);
 
     const randomWord = (list: WordsInterface[]) => {
         return Math.floor(Math.random() * list.length);
@@ -74,6 +76,11 @@ export const Playing = () => {
             {words != null && (
                 <div>
                     <FlexBlock justifyContent="left" wrap>
+                        <List 
+                            data={artikels} 
+                            setArtikel={setArtikel} 
+                            artikel={artikel}
+                        />
                         <PlayingInput 
                             setValue={setHiddenWordValue}
                             value={hiddenWordValue}

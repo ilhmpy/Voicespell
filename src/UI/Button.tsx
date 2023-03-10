@@ -26,6 +26,10 @@ export const Button = styled.button<ButtonInterface>`
         fill: #fff;
      }
 
+     &:last-child {
+         margin-right: 0px;
+     }
+
      ${({ small }) => small && `width: 45px; height: 40px;`}
-     ${({ isWork }) => isWork != null && isWork == false && `background: rgb(94, 1, 94);`}
+     ${({ isWork }) => isWork != null && isWork == false && `background: rgb(94, 1, 94); cursor: not-allowed;`}
 `;

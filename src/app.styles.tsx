@@ -11,5 +11,5 @@ export const Modal = styled.div<ModalType>`
    font-family: 'Roboto', sans-serif;
    font-weight: 600;    
 
-   ${({ play }) => play ? `width: 400px; height: auto;` : `width: 400px; height: auto;`}
+   ${({ play }) => play ? `width: 430px; height: auto;` : `width: 400px; height: auto;`}
 `;
