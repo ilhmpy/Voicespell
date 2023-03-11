@@ -2,6 +2,7 @@
 import { Button } from "../../UI/Button";
 import { FlexBlock } from "../../UI/FlexBlock";
 import { FC } from "react";
+import { Languages } from "../Languages/Languages";
 
 interface StartPlayInterface {
     setPlay: (play: boolean) => void; 
@@ -18,6 +19,7 @@ export const StartPlay: FC<StartPlayInterface> = ({ setPlay }) => {
             <FlexBlock>
                 <Button onClick={handleClick}>ГРАТИ</Button>
             </FlexBlock>
+            <Languages />
         </div>
     )
 };

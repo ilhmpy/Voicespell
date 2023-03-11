@@ -10,6 +10,7 @@ export const Modal = styled.div<ModalType>`
    border-radius: 10px;
    font-family: 'Roboto', sans-serif;
    font-weight: 600;    
+   padding-bottom: 15px;
 
    ${({ play }) => play ? `width: 430px; height: auto;` : `width: 400px; height: auto;`}
 `;

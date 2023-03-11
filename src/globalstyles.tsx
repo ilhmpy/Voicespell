@@ -37,7 +37,8 @@ const GlobalStyles = createGlobalStyle`
         font-family: Roboto, 'sans-serif';
         font-weight: 600;
         cursor: pointer;
-        outlineÖ none;
+        outline: none;
+        user-select: none;
     }
 
     input {

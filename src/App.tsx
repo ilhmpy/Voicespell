@@ -1,5 +1,5 @@
 ﻿import { Modal } from "./app.styles";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { StartPlay, Playing } from "./components";
 
