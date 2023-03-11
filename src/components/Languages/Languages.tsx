@@ -1,14 +1,21 @@
+import { useTranslationChange } from "i18nano/lib/implementation";
+import { changeLanguage } from "i18next";
 import styled from "styled-components";
 import { ReactComponent as UsaSVG } from "../../static/usa.svg";
 
 export const Languages = () => {
+    const ChangeLanguage = (lng: string) => {
+        const translation = useTranslationChange();
+        translation.change(lng);
+    } 
+
     return (
         <LanguagesContainer>    
-            <LanguagesContainerItem>
+            <LanguagesContainerItem onClick={() => ChangeLanguage("ua")}>
                 <div className="sky"></div>
                 <div className="field"></div>
             </LanguagesContainerItem> 
-            <LanguagesContainerItem>
+            <LanguagesContainerItem onClick={() => ChangeLanguage("en")}>
                 <UsaSVG />
             </LanguagesContainerItem>
         </LanguagesContainer>  
