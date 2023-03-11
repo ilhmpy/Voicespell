@@ -63,7 +63,6 @@ export const Playing = () => {
                 hiddenWordValue == words[hiddenWord].word :
                 hiddenWordValue == words[hiddenWord].word && words[hiddenWord].artikel == firstCase(artikel, true)
             ) {
-                console.log('zbs')
                 let filterWords; 
                 if (words.length > 1) {
                     filterWords = words.filter((b, idx) => idx != hiddenWord);
@@ -94,6 +93,7 @@ export const Playing = () => {
                             value={hiddenWordValue}
                             hideWord={words[hiddenWord].word}
                             hideWordObject={words[hiddenWord]}
+                            artikel={artikel}
                         />
                         <Button small onClick={handleSoundButton}>
                             <SoundSVG />
@@ -113,6 +113,8 @@ export const Playing = () => {
                     <PlayingAlarm 
                         hiddenWordValue={hiddenWordValue}
                         hideWord={words[hiddenWord].word}
+                        artikel={artikel}
+                        hideWordObject={words[hiddenWord]}
                     />
                 </div>
             )}

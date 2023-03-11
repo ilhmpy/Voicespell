@@ -13,13 +13,15 @@ interface PlayingInputInteface {
     value: string;
     hideWord: string;
     hideWordObject: WordsInterface;
+    artikel: string;
 }
 
 export const PlayingInput: FC<PlayingInputInteface> = ({
     setValue,
     value,
     hideWord,
-    hideWordObject
+    hideWordObject,
+    artikel,
 }) => {
     const handleHiddenWordInput = (e: any) => {
         const value = e.target.value;

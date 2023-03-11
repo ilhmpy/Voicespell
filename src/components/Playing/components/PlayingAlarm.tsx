@@ -1,10 +1,13 @@
 import { FC } from "react"
 import styled from "styled-components";
+import { WordsInterface } from "../../../types";
 import { Block } from "../../../UI/Block";
 
 interface PlayingAlarm {
     hiddenWordValue: string;
     hideWord: string;
+    hideWordObject: WordsInterface;
+    artikel: string;
 }
 
 interface WordIndicatorInterface {
@@ -13,18 +16,24 @@ interface WordIndicatorInterface {
 
 export const PlayingAlarm: FC<PlayingAlarm> = ({
     hiddenWordValue,
-    hideWord
+    hideWord,
+    hideWordObject,
+    artikel,
 }) => {
     return (
         <>
-            {hiddenWordValue != hideWord && hiddenWordValue != '' && (
-                <Block>
-                    <WordIndicatorBox>
-                        {hiddenWordValue.split('').map((b, idx) => (
-                            <WordIndicator key={idx} right={b == hideWord[idx]}>{b}</WordIndicator>                            
-                        ))}
-                    </WordIndicatorBox>
-                </Block>
+            {hideWordObject.isVerb ? (
+                hiddenWordValue != hideWord && hiddenWordValue != '' && (
+                    <Block>
+                        <WordIndicatorBox>
+                            {hiddenWordValue.split('').map((b, idx) => (
+                                <WordIndicator key={idx} right={b == hideWord[idx]}>{b}</WordIndicator>                            
+                            ))}
+                        </WordIndicatorBox>
+                    </Block>
+                )
+            ) : (
+                <>sss</>
             )}
             {hiddenWordValue == hideWord && (
                 <WordSpanResult>Ти впорався! Вибери нове слово.</WordSpanResult>
