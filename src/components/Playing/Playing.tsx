@@ -34,7 +34,7 @@ export const Playing = () => {
     const [words, setWords] = useState<WordsInterface[] | null>(null);
     const [hiddenWordValue, setHiddenWordValue] = useState<string>('');
     const [artikels, setArtikels] = useState<string[]>(['Der', 'Die', 'Das']);
-    const [artikel, setArtikel] = useState<string>(artikels[0]);
+    const [artikel, setArtikel] = useState<string>('');
 
     const randomWord = (list: WordsInterface[]) => {
         return Math.floor(Math.random() * list.length);
@@ -71,6 +71,7 @@ export const Playing = () => {
                 }
                 setHiddenWord(randomWord(filterWords));
                 setWords(filterWords);
+                setArtikel('');
                 setHiddenWordValue('');
             }
         }

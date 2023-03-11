@@ -25,7 +25,7 @@ export const List: FC<ListInterface> = ({
 
     return (
         <ListContainer onClick={() => setIsVision(!isVision)}>
-            <ListText>{artikel}</ListText>
+            <ListText>{artikel != '' ? artikel : 'Artikel'}</ListText>
             <ListItemContainer 
                 isVision={isVision}
                 length={data.length}
