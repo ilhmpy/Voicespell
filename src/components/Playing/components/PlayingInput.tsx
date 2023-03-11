@@ -5,6 +5,7 @@ import { firstCase } from "../../../functions";
 
 interface InputInterface { 
     right: boolean;
+    artikels: boolean;
 }
 
 interface PlayingInputInteface {
@@ -32,6 +33,7 @@ export const PlayingInput: FC<PlayingInputInteface> = ({
             onChange={handleHiddenWordInput} 
             value={value}
             right={value == hideWord}
+            artikels={!hideWordObject.isVerb}
         />
     )
 }
@@ -46,6 +48,7 @@ export const Input = styled.input<InputInterface>`
     font-family: Roboto, 'sans-serif';
     font-weight: 400;
     margin-right: 5px;
-    
+        
     ${({ right }) => right ? 'color: green;' : 'color: red;'}
+    ${({ artikels }) => artikels ? '' : 'width: 250px;'}
 `;

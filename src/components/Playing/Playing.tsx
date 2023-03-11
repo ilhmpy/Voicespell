@@ -76,11 +76,13 @@ export const Playing = () => {
             {words != null && (
                 <div>
                     <FlexBlock justifyContent="left" wrap>
-                        <List 
-                            data={artikels} 
-                            setArtikel={setArtikel} 
-                            artikel={artikel}
-                        />
+                        {!words[hiddenWord].isVerb && (
+                            <List 
+                                data={artikels} 
+                                setArtikel={setArtikel} 
+                                artikel={artikel}
+                            />
+                        )}
                         <PlayingInput 
                             setValue={setHiddenWordValue}
                             value={hiddenWordValue}
