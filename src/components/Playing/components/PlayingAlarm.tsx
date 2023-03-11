@@ -1,5 +1,6 @@
 import { FC } from "react"
 import styled from "styled-components";
+import { firstCase } from "../../../functions";
 import { WordsInterface } from "../../../types";
 import { Block } from "../../../UI/Block";
 
@@ -8,6 +9,13 @@ interface PlayingAlarm {
     hideWord: string;
     hideWordObject: WordsInterface;
     artikel: string;
+}
+
+interface WordAlarmInterface {
+    hiddenWordValue: string;
+    hideWord: string;
+    artikel?: string;
+    hideWordObject: WordsInterface;
 }
 
 interface WordIndicatorInterface {
@@ -22,23 +30,38 @@ export const PlayingAlarm: FC<PlayingAlarm> = ({
 }) => {
     return (
         <>
-            {hideWordObject.isVerb ? (
-                hiddenWordValue != hideWord && hiddenWordValue != '' && (
-                    <Block>
-                        <WordIndicatorBox>
-                            {hiddenWordValue.split('').map((b, idx) => (
-                                <WordIndicator key={idx} right={b == hideWord[idx]}>{b}</WordIndicator>                            
-                            ))}
-                        </WordIndicatorBox>
-                    </Block>
-                )
-            ) : (
-                <>sss</>
+            {(hiddenWordValue != hideWord && hiddenWordValue != '') && (
+                <WordAlarm 
+                    hiddenWordValue={hiddenWordValue}
+                    hideWord={hideWord}
+                    hideWordObject={hideWordObject}
+                    artikel={firstCase(artikel, true)}
+                />
             )}
             {hiddenWordValue == hideWord && (
                 <WordSpanResult>Ти впорався! Вибери нове слово.</WordSpanResult>
             )}
         </>
+    )
+}
+
+const WordAlarm: FC<WordAlarmInterface> = ({
+    hiddenWordValue,
+    hideWord,
+    artikel,
+    hideWordObject,
+}) => {
+    return (
+        <Block>
+            <WordIndicatorBox>
+                {!hideWordObject.isVerb && (
+                    <WordIndicator right={hideWordObject.artikel == artikel}>{artikel}</WordIndicator>
+                )}
+                {hiddenWordValue.split('').map((b, idx) => (
+                    <WordIndicator key={idx} right={b == hideWord[idx]}>{b}</WordIndicator>                            
+                ))}
+            </WordIndicatorBox>
+        </Block>
     )
 }
 
