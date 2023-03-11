@@ -5,6 +5,7 @@ import { ReactComponent as ReplaceSVG } from "../../static/replace.svg";
 import { useEffect, useState } from "react";
 import { PlayingInput, PlayingAlarm } from "./components";
 import { WordsInterface } from "../../types";
+import { firstCase } from "../../functions";
 
 export const Playing = () => {
     const [hiddenWord, setHiddenWord] = useState<number>(0);
@@ -57,7 +58,12 @@ export const Playing = () => {
 
     const handleReplaceButton = () => {
         if (words) {
-            if (hiddenWordValue == words[hiddenWord].word) {
+            if (
+                words[hiddenWord].isVerb ?
+                hiddenWordValue == words[hiddenWord].word :
+                hiddenWordValue == words[hiddenWord].word && words[hiddenWord].artikel == firstCase(artikel, true)
+            ) {
+                console.log('zbs')
                 let filterWords; 
                 if (words.length > 1) {
                     filterWords = words.filter((b, idx) => idx != hiddenWord);
@@ -92,7 +98,15 @@ export const Playing = () => {
                         <Button small onClick={handleSoundButton}>
                             <SoundSVG />
                         </Button>
-                        <Button small onClick={handleReplaceButton} isWork={hiddenWordValue == words[hiddenWord].word}>
+                        <Button 
+                            small 
+                            onClick={handleReplaceButton} 
+                            isWork={
+                                words[hiddenWord].isVerb ?
+                                hiddenWordValue == words[hiddenWord].word :
+                                hiddenWordValue == words[hiddenWord].word && words[hiddenWord].artikel == firstCase(artikel, true)
+                            }
+                        >   
                             <ReplaceSVG />
                         </Button>
                     </FlexBlock>
