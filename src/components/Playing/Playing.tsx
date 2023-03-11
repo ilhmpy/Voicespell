@@ -12,7 +12,7 @@ export const Playing = () => {
     const [defaultWords, setDefaultWords] = useState<WordsInterface[]>([
         { word: 'Tätigkeit', artikel: 'die', isVerb: false }, 
         { word: 'Fahrkarte', artikel: 'die', isVerb: false },
-        { word: 'Verkehr', artikel: 'der', isVerb: false }, 
+        { word: 'Verkehr', artikel: 'der', isVerb: false },
         { word: 'ausschreiben', isVerb: true },
         { word: 'abschreiben', isVerb: true },
         { word: 'einfühlen', isVerb: true },

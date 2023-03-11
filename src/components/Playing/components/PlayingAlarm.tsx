@@ -28,15 +28,33 @@ export const PlayingAlarm: FC<PlayingAlarm> = ({
     hideWordObject,
     artikel,
 }) => {
+    console.log(
+        hideWordObject.isVerb ? hiddenWordValue != hideWord : 'notverb',
+    )
+
     return (
         <>
-            {(hiddenWordValue != hideWord && hiddenWordValue != '') && (
-                <WordAlarm 
-                    hiddenWordValue={hiddenWordValue}
-                    hideWord={hideWord}
-                    hideWordObject={hideWordObject}
-                    artikel={firstCase(artikel, true)}
-                />
+            {hideWordObject.isVerb ? (
+                hiddenWordValue != hideWord
+                    && (
+                        <WordAlarm 
+                            hiddenWordValue={hiddenWordValue}
+                            hideWord={hideWord}
+                            hideWordObject={hideWordObject}
+                            artikel={firstCase(artikel, true)}
+                        />
+                    )
+                
+            ) : (
+                (hiddenWordValue != hideWord || hideWordObject.artikel != firstCase(artikel, true))
+                && (
+                    <WordAlarm 
+                        hiddenWordValue={hiddenWordValue}
+                        hideWord={hideWord}
+                        hideWordObject={hideWordObject}
+                        artikel={firstCase(artikel, true)}
+                    />
+                )
             )}
             {hiddenWordValue == hideWord && (
                 <WordSpanResult>Ти впорався! Вибери нове слово.</WordSpanResult>
