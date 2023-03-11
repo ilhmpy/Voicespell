@@ -28,8 +28,6 @@ export const PlayingAlarm: FC<PlayingAlarm> = ({
     hideWordObject,
     artikel,
 }) => {
-    console.log(hideWordObject.isVerb ? hiddenWordValue == hideWord :
-        hiddenWordValue == hideWord && hideWordObject.artikel == firstCase(artikel, true) )
     return (
         <>
             {hideWordObject.isVerb ? (

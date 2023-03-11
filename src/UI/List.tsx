@@ -24,11 +24,14 @@ export const List: FC<ListInterface> = ({
     }
 
     return (
-        <ListContainer onClick={() => setIsVision(!isVision)}>
+        <ListContainer 
+            onClick={() => setIsVision(!isVision)}
+        >
             <ListText>{artikel != '' ? artikel : 'Artikel'}</ListText>
             <ListItemContainer 
                 isVision={isVision}
                 length={data.length}
+                onMouseLeave={() => setIsVision(false)}
             >
                 {data.map((item, idx) => (
                     <ListItem key={idx} onClick={(e) => switchListItem(e, idx)}>{item}</ListItem>
