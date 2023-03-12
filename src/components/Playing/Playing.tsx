@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { PlayingInput, PlayingAlarm } from "./components";
 import { WordsInterface } from "../../types";
 import { firstCase } from "../../functions";
+import axios from "axios";
 
 export const Playing = () => {
     const [hiddenWord, setHiddenWord] = useState<number>(0);
@@ -44,6 +45,19 @@ export const Playing = () => {
         const rWord = randomWord(defaultWords);
         setWords(defaultWords)
         setHiddenWord(rWord);
+    }, []);
+
+    useEffect(() => {
+        const getDictionary = async () => {
+            const req = axios("https://api.pons.com/v1/dictionaries?language=de", {
+                method: "GET",
+            })
+    
+            const res = await req;
+            console.log(res);
+        };
+
+        getDictionary();
     }, []);
 
     const handleSoundButton = () => {
