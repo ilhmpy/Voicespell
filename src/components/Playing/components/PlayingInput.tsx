@@ -46,7 +46,7 @@ export const PlayingInput: FC<PlayingInputInteface> = ({
 export const Input = styled.input<InputInterface>`
     display: block;
     padding: 15px;
-    width: 180px;
+    width: 175px;
     height: 40px;
     border: 2px solid rgb(136, 45, 137);
     border-radius: 10px;
@@ -55,5 +55,5 @@ export const Input = styled.input<InputInterface>`
     margin-right: 5px;
         
     ${({ right }) => right ? 'color: green;' : 'color: red;'}
-    ${({ artikels }) => artikels ? '' : 'width: 250px;'}
+    ${({ artikels }) => artikels ? '' : 'width: 240px;'}
 `;

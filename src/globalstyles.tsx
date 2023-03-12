@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
         height: 690px;
         margin: 0;
         padding: 0;
-        background: rgb(2,0,36);
+        background: #fff;
     }
 
     #root {

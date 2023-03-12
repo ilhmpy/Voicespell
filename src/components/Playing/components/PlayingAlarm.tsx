@@ -80,16 +80,20 @@ const WordAlarm: FC<WordAlarmInterface> = ({
     hideWordObject,
 }) => {
     return (
-        <Block>
-            <WordIndicatorBox>
-                {!hideWordObject.isVerb && (
-                    <WordIndicator right={hideWordObject.artikel == artikel}>{artikel}</WordIndicator>
-                )}
-                {hiddenWordValue.split('').map((b, idx) => (
-                    <WordIndicator key={idx} right={b == hideWord[idx]}>{b}</WordIndicator>                            
-                ))}
-            </WordIndicatorBox>
-        </Block>
+        <>
+            {hiddenWordValue != '' && (
+                <Block>
+                    <WordIndicatorBox>
+                        {!hideWordObject.isVerb && (
+                            <WordIndicator right={hideWordObject.artikel == artikel}>{artikel}</WordIndicator>
+                        )}
+                        {hiddenWordValue.split('').map((b, idx) => (
+                            <WordIndicator key={idx} right={b == hideWord[idx]}>{b}</WordIndicator>                            
+                        ))}
+                    </WordIndicatorBox>
+                </Block>
+            )}
+        </>
     )
 }
 

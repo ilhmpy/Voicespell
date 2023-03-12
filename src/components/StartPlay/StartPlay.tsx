@@ -2,7 +2,6 @@
 import { Button } from "../../UI/Button";
 import { FlexBlock } from "../../UI/FlexBlock";
 import { FC } from "react";
-import { Languages } from "../Languages/Languages";
 import { useTranslation } from "react-i18next";
 
 interface StartPlayInterface {
@@ -22,7 +21,6 @@ export const StartPlay: FC<StartPlayInterface> = ({ setPlay }) => {
             <FlexBlock>
                 <Button onClick={handleClick}>{t("startMenu.play")}</Button>
             </FlexBlock>
-            <Languages />
         </div>
     )
 };

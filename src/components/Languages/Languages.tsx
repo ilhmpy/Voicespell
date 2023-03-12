@@ -29,6 +29,10 @@ export const LanguagesContainer = styled.div`
     margin-top: 20px;
     justify-content: space-between;
     padding: 5px 10px;
+    position: absolute;
+    margin: 0 auto;
+    top: 30px;
+    left: 30px;
 `;
 
 export const LanguagesContainerItem = styled.div`
