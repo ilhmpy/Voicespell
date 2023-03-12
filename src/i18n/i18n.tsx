@@ -1,16 +1,46 @@
-import { TranslationProvider } from "i18nano";
-import { FC } from "i18nano/lib/react";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
-const translations = {
-    'en': () => import("./translations/en.json"),
-    'ua': () => import("./translations/ua.json")
-};
 
-export const LocalesProvider: FC<{ children: any }> = ({ children }) => {
-    return (
-        // @ts-ignore: error message
-        <TranslationProvider translations={translations}>
-            {children}
-        </TranslationProvider>  
-    )
-}
+i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        debug: true,
+        fallbackLng: 'ua',
+        
+        interpolation: {
+            escapeValue: false
+        },
+
+        resources: {
+            ua: {
+                translation: {
+                    startMenu: {
+                        startTitle: "Гра на перевірку знань німецьких слів",
+                        play: "Грати"
+                    },
+
+                    playMenu: {
+                        inputPlaceholder: "Введіть загадане слово",
+                        win: "Ти впорався! Вибери нове слово"
+                    }
+                }
+            },
+
+            en: {
+                translation: {
+                    startMenu: {
+                        startTitle: "A game to test your knowledge of German words",
+                        play: "Play"
+                    },
+
+                    playMenu: {
+                        inputPlaceholder: "Enter the guess word",
+                        win: "You did it! Choose new word"
+                    }
+                }
+            }
+        }
+    })

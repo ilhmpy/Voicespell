@@ -1,12 +1,12 @@
-import { useTranslationChange } from "i18nano/lib/implementation";
-import { changeLanguage } from "i18next";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { ReactComponent as UsaSVG } from "../../static/usa.svg";
 
 export const Languages = () => {
-    const ChangeLanguage = (lng: string) => {
-        const translation = useTranslationChange();
-        translation.change(lng);
+    const { i18n } = useTranslation();
+
+    const ChangeLanguage = (lng: "ua" | "en") => {
+        i18n.changeLanguage(lng);
     } 
 
     return (

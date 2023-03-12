@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { firstCase } from "../../../functions";
 import { WordsInterface } from "../../../types";
 import { Block } from "../../../UI/Block";
+import { useTranslation } from "react-i18next";
 
 interface PlayingAlarm {
     hiddenWordValue: string;
@@ -65,8 +66,10 @@ export const PlayingAlarm: FC<PlayingAlarm> = ({
 }
 
 const WordSpanResultText = () => {
+    const { t } = useTranslation();
+
     return (
-        <WordSpanResult>Ти впорався! Вибери нове слово.</WordSpanResult>
+        <WordSpanResult>{t("playMenu.win")}</WordSpanResult>
     )
 }
 

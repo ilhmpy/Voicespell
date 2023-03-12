@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FC } from "react";
 import { WordsInterface } from "../../../types";
 import { firstCase } from "../../../functions";
+import { useTranslation } from "react-i18next";
 
 interface InputInterface { 
     right: boolean;
@@ -21,8 +22,9 @@ export const PlayingInput: FC<PlayingInputInteface> = ({
     value,
     hideWord,
     hideWordObject,
-    artikel,
 }) => {
+    const { t } = useTranslation();
+
     const handleHiddenWordInput = (e: any) => {
         const value = e.target.value;
         setValue(hideWordObject.isVerb ? firstCase(value, true) : firstCase(value));
@@ -30,7 +32,8 @@ export const PlayingInput: FC<PlayingInputInteface> = ({
 
     return (
         <Input 
-            placeholder="Введіть загадане слово"
+            /* @ts-ignore: problems with type from HTML Input types*/
+            placeholder={t("playMenu.inputPlaceholder")}
             maxLength={hideWord.length}
             onChange={handleHiddenWordInput} 
             value={value}
